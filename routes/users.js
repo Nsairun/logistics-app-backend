@@ -8,7 +8,7 @@ router.get('/', function(req, res, next) {
 });
 
 router.post('/signup', [
-  check('name').isLength({ min: 3 }).withMessage("Name should be at least 3 characters"),
+  check('fullname').isLength({ min: 3 }).withMessage("fullname should be at least 3 characters"),
   check('email').isEmail().withMessage("Email should be valid"),
   check('password').isLength({ min: 6 }).withMessage("Password should be at least 6 characters")
 ], signup);

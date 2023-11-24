@@ -2,12 +2,13 @@ const mongoose = require("mongoose");
 const createError = require('http-errors');
 const express = require('express');
 const path = require('path');
-const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
+const clientRouter = require('./routes/clientRoute');
+const ordersRouter = require('./routes/ordersRoute'); 
 
 const app = express();
 const cors = require('cors');
@@ -40,8 +41,10 @@ mongoose.connect(process.env.MONGO_CONNECT_URL, {
 // using routes
 app.use('/', indexRouter);
 app.use('/api/users', usersRouter);
+app.use('/api/clientRoute', clientRouter);
+app.use('/api/ordersRoute', ordersRouter);
 
-// starting server
+// starting serverc
 app.listen(port, () => {
   console.log(`App is running on port ${port}`);
 });
@@ -58,7 +61,7 @@ app.use(function(err, req, res, next) {
   res.locals.error = req.app.get('env') === 'development' ? err : {};
 
   // render the error page
-  res.status(err.status || 500);A
+  res.status(err.status || 500);
   res.render('error');
 });
 
