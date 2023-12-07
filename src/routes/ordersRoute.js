@@ -1,9 +1,11 @@
 const express = require('express');
 const router = express.Router();
-const OrderController = require('../controllers/orderController');
+const OrderController = require('../modules/order/order.controller');
 
 // GET all order
 router.get('/order', OrderController.getAllOrders);
+
+router.get('/user/:userId', OrderController.getUserOrders);
 
 // GET a specific Order by ID
 router.get('/order/:id', OrderController.getOrderById);

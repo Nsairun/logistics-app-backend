@@ -27,7 +27,8 @@ class BCRYPT {
 
 class JWT {
   static sign(user) {
-    return jwt.sign({ ...user }, JWT_PRIVATEKEY, { expiresIn: "1h" });
+    console.log({ JWT_PRIVATEKEY })
+    return jwt.sign({ ...user }, JWT_PRIVATEKEY, { expiresIn: "2 days" });
   }
 
   static verify(token) {

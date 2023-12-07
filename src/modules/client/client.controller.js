@@ -1,5 +1,5 @@
-const Client = require("../models/clientModel");
-const { createFrombody } = require("../utils/utils");
+const Client = require("../../models/clientModel");
+const { createFrombody } = require("../../utils/utils");
 
 // GET all clients
 const getAllClients = async (req, res) => {

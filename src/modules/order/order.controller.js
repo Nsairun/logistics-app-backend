@@ -1,10 +1,20 @@
-const Order = require("../models/order");
-const { createFrombody } = require("../utils/utils");
+const Order = require("../../models/order");
+const { createFrombody } = require("../../utils/utils");
 
 // GET all Orders
 const getAllOrders = async (req, res) => {
   try {
     const orders = await Order.find();
+    res.json(orders);
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+};
+
+const getUserOrders = async (req, res) => {
+  try {
+    const userId = req.params.userId
+    const orders = await Order.find({ userId });
     res.json(orders);
   } catch (err) {
     res.status(500).json({ message: err.message });
@@ -19,11 +29,15 @@ const getOrderById = async (req, res) => {
 
 // POST a new Order
 const createOrder = async (req, res) => {
-  const newOrder = new Order(req.body);
+  console.log(req.body);
   try {
-    const savedOrder = await newOrder.save();
-    res.status(201).json(savedOrder);
+    const new_order = await Order.create({
+      ...req.body,
+    });
+
+    res.status(201).json(new_order);
   } catch (err) {
+    console.log(err)
     res.status(400).json({ message: err.message });
   }
 };
@@ -34,13 +48,13 @@ const updateOrderById = async (req, res) => {
     const id = req.params.id;
     const body = req.body;
     const accepted_keys = [
-      "client_id",
+      "userId",
       "productName",
-      "location",
+      "name",
       "pointFrom",
       "pointTo",
       "pending",
-      "vehicule",
+      "vehicle",
     ];
 
     const prev_Order = await Order.findById(id).then(res => res._doc || res);
@@ -74,6 +88,7 @@ const deleteOrderById = async (req, res) => {
 
 module.exports = {
   getAllOrders,
+  getUserOrders,
   getOrderById,
   createOrder,
   updateOrderById,

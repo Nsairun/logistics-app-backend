@@ -3,15 +3,15 @@
 const mongoose = require('mongoose');
 
 const OrderSchema = new mongoose.Schema({
-  client_id: {
+  userId: {
     type: String,
     required: true,
   },
-  productName: {
+  idNumber: {
     type: String,
     required: true,
   },
-  location: {
+  name: {
     type: String,
     required: true,
   },
@@ -23,13 +23,20 @@ const OrderSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  status: {
+  nameOfGood: {
     type: String,
     required: true,
   },
-  Vehicule: {
+  status: {
     type: String,
-    required: true,
+    default: "PENDING",
+  },
+  vehicle: {
+    type: String,
+    default: "bike",
+  },
+  timeDeparture: {
+    type: String,
   },
 });
 

@@ -30,6 +30,14 @@ const userSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
+    roles: {
+      type: [String],
+      default: [],
+    },
+    verified: {
+      type: Boolean,
+      default: false,
+    }
   },
   { timestamps: true }
 );

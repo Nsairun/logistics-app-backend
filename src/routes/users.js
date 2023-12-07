@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const { signup, signin, signout } = require('../controllers/user');
+const { signup, signin, signout, getCurrentUser } = require('../modules/users/user.controller');
 const { check } = require('express-validator');
 
 router.get('/', function(req, res, next) {
@@ -16,5 +16,7 @@ router.post('/signup', [
 router.post('/signin', signin);
 
 router.get('/signout', signout);
+
+router.get('/current-user', getCurrentUser);
 
 module.exports = router;
