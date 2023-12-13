@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const { signup, signin, signout, getCurrentUser } = require('../modules/users/user.controller');
+const { signup, signin, signout, getCurrentUser, getAllUsers, updateUserRoles, getOne } = require('../modules/users/user.controller');
 const { check } = require('express-validator');
 
 router.get('/', function(req, res, next) {
@@ -18,5 +18,12 @@ router.post('/signin', signin);
 router.get('/signout', signout);
 
 router.get('/current-user', getCurrentUser);
+
+router.get('/all', getAllUsers);
+
+router.get('/get-one', getOne);
+
+router.put('/update-role', updateUserRoles)
+
 
 module.exports = router;

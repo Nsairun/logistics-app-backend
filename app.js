@@ -8,7 +8,7 @@ const logger = require('morgan');
 const indexRouter = require('./src/routes/index');
 const usersRouter = require('./src/routes/users');
 const clientRouter = require('./src/routes/clientRoute');
-const ordersRouter = require('./src/routes/ordersRoute'); 
+const ordersRouter = require('./src/routes/ordersRoute');
 
 const app = express();
 const cors = require('cors');

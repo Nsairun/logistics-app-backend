@@ -1,6 +1,4 @@
 const mongoose = require("mongoose");
-const crypto = require("crypto");
-const { v1: uuidv1 } = require("uuid");
 
 const userSchema = new mongoose.Schema(
   {
@@ -30,9 +28,10 @@ const userSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
-    roles: {
-      type: [String],
-      default: [],
+    role: {
+      type: String,
+      enum: ["ADMIN", "USER", "PERSONNEL"],
+      default: "USER",
     },
     verified: {
       type: Boolean,
