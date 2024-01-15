@@ -38,6 +38,8 @@ mongoose.connect(process.env.MONGO_CONNECT_URL, {
   console.log("Unable to connect to DB", e);
 });
 
+//export MONGO_CONNECT_URL=mongodb://username:password@localhost:27017/mydatabase
+
 // using routes
 app.use('/', indexRouter);
 app.use('/api/users', usersRouter);
