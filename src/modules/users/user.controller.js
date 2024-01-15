@@ -14,7 +14,7 @@ exports.signup = async (req, res) => {
   }
 
   try {
-    const { fullname, email, password, quarter } = req.body;
+    const { fullname, email, password, quarter, phonenumber } = req.body;
     const prev_user = await User.findOne({ email });
 
     if (prev_user) {
@@ -66,7 +66,7 @@ exports.signin = async (req, res) => {
     const match = BCRYPT.compare(password, user.password);
 
     if (!match) {
-      res.json({
+      return res.status(401).json({
         message: "Incorrect password",
         user: null,
       });
@@ -74,7 +74,7 @@ exports.signin = async (req, res) => {
 
     const token = JWT.sign(user);
 
-    return res.json({
+    return res.status(200).json({
       message: "Signin successful",
       token,
       user: {
