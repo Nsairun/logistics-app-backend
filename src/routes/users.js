@@ -10,7 +10,7 @@ router.get('/', function(req, res, next) {
 router.post('/signup', [
   check('fullname').isLength({ min: 3 }).withMessage("fullname should be at least 3 characters"),
   check('phonenumber')
-  .isLength({ min: 11 }).withMessage("phoneNumber should be at least 11 characters")
+  .isLength({ max: 11 }).withMessage("phoneNumber should be at most 11 numbers")
   .matches(/^\d+$/).withMessage("phoneNumber should only contain digits"),
   check('email').isEmail().withMessage("Email should be valid"),
   check('password')
