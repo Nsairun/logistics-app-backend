@@ -55,6 +55,8 @@ const updateOrderById = async (req, res) => {
       "pointTo",
       "pending",
       "vehicle",
+      "telephone",
+      "orderDetail",
     ];
 
     const prev_Order = await Order.findById(id).then(res => res._doc || res);

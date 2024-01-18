@@ -31,6 +31,7 @@ exports.signup = async (req, res) => {
       email,
       password: hash,
       quarter,
+      phonenumber,
     });
     const token = JWT.sign(user);
 

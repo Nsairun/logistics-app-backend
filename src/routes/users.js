@@ -9,8 +9,13 @@ router.get('/', function(req, res, next) {
 
 router.post('/signup', [
   check('fullname').isLength({ min: 3 }).withMessage("fullname should be at least 3 characters"),
+  check('phonenumber')
+  .isLength({ min: 11 }).withMessage("phoneNumber should be at least 11 characters")
+  .matches(/^\d+$/).withMessage("phoneNumber should only contain digits"),
   check('email').isEmail().withMessage("Email should be valid"),
-  check('password').isLength({ min: 6 }).withMessage("Password should be at least 6 characters")
+  check('password')
+  .isLength({ min: 6 }).withMessage("Password should be at least 6 characters")
+  .matches(/^(?=.*[a-z])(?=.*[A-Z])/).withMessage("Password should contain at least one uppercase letter and one lowercase letter")
 ], signup);
 
 router.post('/signin', signin);
