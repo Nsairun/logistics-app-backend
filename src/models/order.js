@@ -38,6 +38,12 @@ const OrderSchema = new mongoose.Schema({
   timeDeparture: {
     type: String,
   },
+  telephone: {
+    type: String,
+  },
+  orderDetail: {
+    type: String,
+  },
 });
 
 const Order = mongoose.model('Order', OrderSchema);
