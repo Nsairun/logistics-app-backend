@@ -6,7 +6,7 @@ const { sendVerificationEmail } = require("../../services/email/send-email");
 
 exports.signup = async (req, res) => {
   const errors = validationResult(req);
-  console.log(req.body)
+  console.log(req.body);
 
   if (!errors.isEmpty()) {
     return res.status(400).json({
@@ -32,18 +32,17 @@ exports.signup = async (req, res) => {
       email,
       password: hash,
       quarter,
-      phonenumber
+      phonenumber,
     });
     const token = JWT.sign(user);
 
     const url = `${API_BASE_URL}/api/users/verify/${user.id}`;
 
-    await sendVerificationEmail({  const { currentUser } = useAppContext();
-
+    await sendVerificationEmail({
       url,
       email_to: user.email,
     });
-console.log({user})
+    console.log({ user });
     return res.json({
       message: "User created successfully, verification link sent to email",
       user,
@@ -98,12 +97,12 @@ exports.getOne = async (req, res) => {
   try {
     const user = await User.find(req.params.id);
     if (!user) {
-      return res.status(404).json({ message: 'User not found' });
+      return res.status(404).json({ message: "User not found" });
     }
     res.json(user);
   } catch (err) {
     console.error(err);
-    res.status(500).json({ message: 'Server Error' });
+    res.status(500).json({ message: "Server Error" });
   }
 };
 
